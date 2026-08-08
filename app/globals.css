@@ -1,7 +1,39 @@
 @import "tailwindcss";
 
-/* Aktifkan Dark Mode berbasis Class */
 @custom-variant dark (&:where(.dark, .dark *));
 
 html { scroll-behavior: smooth; }
-body { min-height: 100vh; }
+body { 
+  min-height: 100vh; 
+  background-color: #020617; 
+  color: #fff;
+}
+
+/* Animasi Loading Bar */
+@keyframes loading-bar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+.animate-loading-bar { animation: loading-bar 4s ease-in-out forwards; }
+
+/* Animasi Fade In untuk Konten */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
+
+/* Animasi Melayang untuk ID Card */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-15px) rotate(-2deg); }
+  100% { transform: translateY(0px) rotate(-2deg); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+/* Animasi Pulse Glow */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
