@@ -3,27 +3,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 html { scroll-behavior: smooth; }
-body { 
-  min-height: 100vh; 
-  background-color: #020617; 
-  color: #fff;
-}
+body { min-height: 100vh; }
 
-/* Animasi Loading Bar */
+/* Animasi Loading Bar (Lama) */
 @keyframes loading-bar {
   0% { width: 0%; }
   100% { width: 100%; }
 }
-.animate-loading-bar { animation: loading-bar 4s ease-in-out forwards; }
+.animate-loading-bar { animation: loading-bar 2.5s ease-in-out forwards; }
 
-/* Animasi Fade In untuk Konten */
+/* Animasi Fade In Up */
 @keyframes fade-in-up {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
 
-/* Animasi Melayang untuk ID Card */
+/* Animasi Float untuk ID Card */
 @keyframes float {
   0% { transform: translateY(0px) rotate(-2deg); }
   50% { transform: translateY(-15px) rotate(-2deg); }
@@ -37,3 +33,21 @@ body {
   50% { opacity: 0.8; transform: scale(1.1); }
 }
 .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+
+/* ANIMASI NAMA MENGETIK (Typing Effect) */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #6366f1; }
+}
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid #6366f1;
+  animation: 
+    typing 2s steps(15, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
