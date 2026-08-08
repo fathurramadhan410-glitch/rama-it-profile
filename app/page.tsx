@@ -5,13 +5,12 @@ import Link from 'next/link';
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Timer 4 detik untuk animasi loading
+  // Ubah timer menjadi 2.5 detik (2500 ms) agar tidak terlalu lama menunggu
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 4000);
+    const timer = setTimeout(() => setIsLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Daftar Navigasi
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About Me', href: '#about' },
@@ -19,7 +18,6 @@ export default function Home() {
     { name: 'Contact', href: '#contact' },
   ];
 
-  // Data Proyek
   const projects = [
     {
       title: "Qur'an Tracker",
@@ -46,23 +44,32 @@ export default function Home() {
       <div className="fixed top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-3xl animate-pulse-glow"></div>
       <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl animate-pulse-glow"></div>
 
-      {/* ===== ANIMASI LOADING 4 DETIK ===== */}
+      {/* ===== ANIMASI LOADING 2.5 DETIK ===== */}
       {isLoading && (
         <div className="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center">
           <h1 className="text-5xl font-extrabold tracking-tight mb-8 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
             Rama<span className="text-white">.IT</span>
           </h1>
           <div className="w-64 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 animate-loading-bar"></div>
+            {/* Animasi bar sekarang 2.5 detik agar sinkron */}
+            <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style={{ animation: 'loading-bar 2.5s ease-in-out forwards' }}></div>
           </div>
           <p className="mt-6 text-sm text-gray-500 font-medium tracking-widest uppercase">Initializing Portfolio...</p>
+          
+          {/* Tombol Skip di pojok kanan bawah */}
+          <button 
+            onClick={() => setIsLoading(false)} 
+            className="absolute bottom-8 right-8 text-xs text-gray-600 hover:text-white transition font-medium border border-slate-700 px-3 py-1.5 rounded-md"
+          >
+            Skip Intro <span className="ml-1">↪</span>
+          </button>
         </div>
       )}
 
       {/* ===== KONTEN UTAMA ===== */}
       <div className={`relative z-10 transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         
-        {/* Navbar (Glassmorphism) */}
+        {/* Navbar */}
         <nav className="fixed top-0 w-full z-50 bg-slate-950/50 backdrop-blur-xl border-b border-white/5">
           <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
@@ -82,11 +89,10 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* ===== HOME SECTION ===== */}
+        {/* HOME SECTION */}
         <section id="home" className="min-h-screen flex items-center px-6 pt-24 pb-12">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             
-            {/* Teks Kiri */}
             <div className="animate-fade-in-up">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-xs font-bold mb-6 border border-green-500/20">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
@@ -108,32 +114,26 @@ export default function Home() {
             {/* ID Card Kanan */}
             <div className="flex justify-center md:justify-end">
               <div className="animate-float relative w-72 h-96 perspective-1000">
-                {/* Tali Kalung */}
                 <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-20 border-2 border-indigo-500/30 rounded-b-[40px] border-t-0"></div>
                 <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 bg-slate-950 rounded-full"></div>
                 </div>
                 
-                {/* Kartu ID */}
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl border border-white/10 overflow-hidden flex flex-col">
-                  {/* Header Card */}
                   <div className="bg-indigo-600 p-4 flex justify-between items-center">
                     <span className="font-bold text-sm text-white tracking-wider">DEV ID CARD</span>
                     <span className="text-2xl">💻</span>
                   </div>
                   
-                  {/* Foto */}
                   <div className="p-6 flex justify-center">
-                    {/* Ganti src ke /id-card-photo.jpg jika sudah upload foto */}
                     <img 
                       src="/id-card-photo.jpg" 
                       alt="Foto Fathur" 
                       className="w-32 h-32 rounded-xl object-cover border-4 border-white/10 shadow-lg bg-slate-700"
-                      onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/128x128/1e293b/white?text=Photo"; }}
                     />
                   </div>
                   
-                  {/* Detail */}
                   <div className="px-6 pb-6 text-center flex-1 flex flex-col justify-end">
                     <h3 className="font-bold text-lg text-white">Fathur Ramadhan</h3>
                     <p className="text-indigo-400 text-xs font-medium mb-4">Web Developer & System Engineer</p>
@@ -150,7 +150,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== ABOUT ME SECTION ===== */}
+        {/* ABOUT ME SECTION */}
         <section id="about" className="py-24 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center">About <span className="text-indigo-400">Me</span></h2>
@@ -175,7 +175,6 @@ export default function Home() {
                 <svg className="w-12 h-12 text-indigo-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 <h4 className="font-bold text-lg mb-2">Download CV Saya</h4>
                 <p className="text-sm text-gray-400 mb-6">Lihat riwayat hidup lengkap saya dalam format PDF.</p>
-                {/* Ganti href ke /cv-fathur.pdf jika file sudah ada */}
                 <a href="/cv-fathur.pdf" download className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition w-full flex items-center justify-center gap-2">
                   Download CV <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </a>
@@ -184,7 +183,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== PROJECTS SECTION ===== */}
+        {/* PROJECTS SECTION */}
         <section id="projects" className="py-24 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -225,7 +224,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== CONTACT SECTION ===== */}
+        {/* CONTACT SECTION */}
         <section id="contact" className="py-24 px-6 border-t border-white/5">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Get In <span className="text-indigo-400">Touch</span></h2>
@@ -255,7 +254,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="py-8 border-t border-white/5">
           <p className="text-center text-sm text-gray-500">&copy; {new Date().getFullYear()} Fathur Ramadhan (Rama-IT). All Rights Reserved.</p>
         </footer>
