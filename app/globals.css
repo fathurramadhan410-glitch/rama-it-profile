@@ -27,23 +27,19 @@ body { min-height: 100vh; }
 }
 .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
 
-/* ===== ANIMASI TECH LOADER (RAMA.IT) ===== */
-@keyframes glow-pulse {
-  0%, 100% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3); opacity: 0.8; }
-  50% { text-shadow: 0 0 20px rgba(99, 102, 241, 0.8), 0 0 40px rgba(99, 102, 241, 0.5); opacity: 1; }
+/* ===== ANIMASI LOADING (BINTANG & TEKS NAIK) ===== */
+@keyframes rise-up {
+  0% { opacity: 0; transform: translateY(100vh); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-rise-up { animation: rise-up 2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 
-@keyframes scan-line {
-  0% { top: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+.stars-background {
+  background-color: #000000;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
 }
-.animate-scan-line { animation: scan-line 2.5s ease-in-out infinite; }
-
-@keyframes grid-move {
-  0% { background-position: 0 0; }
-  100% { background-position: 50px 50px; }
-}
-.animate-grid-move { animation: grid-move 3s linear infinite; }

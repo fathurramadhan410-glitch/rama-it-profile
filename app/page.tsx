@@ -19,81 +19,88 @@ export default function Home() {
     { name: 'Contact', href: '#contact' },
   ];
 
-  const webSkills = ['PHPMyAdmin', 'PHP Native', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'Next.js', 'React', 'Laravel', 'TypeScript'];
-  const networkSkills = ['Network Administration', 'Mikrotik Configuration', 'Routing & Switching', 'Access Point Setup', 'Network Segmentation', 'Crimping & Cabling', 'Computer Troubleshooting', 'Technical Support', 'Server Management', 'Cybersecurity Basics'];
+  // Data Skills (Kategorikal)
+  const techStack = {
+    Frontend: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js'],
+    Fullstack: ['Next.js', 'Laravel'],
+    Backend: ['PHP Native', 'Node.js'],
+    Languages: ['PHP', 'JavaScript', 'TypeScript'],
+    Tools: ['GitHub', 'VS Code', 'XAMPP'],
+    AI: ['Claude', 'Gemini', 'ChatGPT']
+  };
+  const networkSkills = {
+    Administration: ['Mikrotik', 'Routing', 'Switching', 'Access Point'],
+    Security: ['Firewall Config', 'Cybersecurity Basics', 'Network Segmentation'],
+    Infrastructure: ['Cabling (UTP/Fiber)', 'Server Setup', 'Computer Troubleshooting']
+  };
 
+  // Data Projects
   const projects = [
     {
       title: "Qur'an Tracker",
-      desc: "Realtime Al-Qur'an reading tracker with biometric attendance & AI Quiz.",
-      fullDesc: "Sistem Informasi pemantau rutinitas baca Al-Qur'an berbasis Realtime Database. Dibangun dengan arsitektur modern untuk menangani ratusan user secara bersamaan. Mengimplementasikan fitur Tadarus Jamaah Relay otomatis, Target Khatam cerdas, dan AI Quiz Harian.",
-      url: "https://quran-tracker-next.vercel.app",
+      img: "https://placehold.co/600x400/1e293b/6366f1?text=Quran+Tracker+UI",
+      summary: "Sistem informasi pemantau rutinitas baca Al-Qur'an berbasis Realtime Database dengan fitur Tadarus Jamaah Relay dan AI Quiz.",
+      background: "Dibangun untuk mengatasi masalah konsistensi tilawah di komunitas. Menggunakan arsitektur modern Next.js & Supabase agar bisa diakses kapan saja tanpa konfigurasi server yang rumit.",
       benefits: "Meningkatkan konsistensi tilawah jamaah, transparansi progres, dan gamifikasi pembelajaran.",
       uiux: "Antarmuka dark mode elegan, dashboard analitik real-time, dan input form yang responsif.",
+      url: "https://quran-tracker-next.vercel.app",
       tech: ['Next.js', 'Supabase', 'Tailwind'],
       isLive: true,
       icon: "📖"
     },
     {
       title: "Lapor Sapa",
-      desc: "Smart City public service & complaint platform.",
-      fullDesc: "Platform aduan masyarakat berbasis Smart City. Mengintegrasikan Google Maps API untuk pelacakan geografis aduan infrastruktur. Dashboard admin dilengkapi filter Prioritas dan Status Real-time.",
-      url: "#",
-      benefits: "Mempercepat respon pemerintah terhadap kerusakan fasilitas umum dan meningkatkan transparansi.",
+      img: "https://placehold.co/600x400/1e293b/6366f1?text=Lapor+Sapa+UI",
+      summary: "Platform aduan masyarakat berbasis Smart City dengan integrasi Google Maps untuk pelacakan geografis.",
+      background: "Inovasi untuk pemerintah daerah agarresponsif terhadap kerusakan fasilitas umum. Dibangun dengan Next.js dan PostgreSQL.",
+      benefits: "Mempercepat respon pemerintah dan meningkatkan transparansi.",
       uiux: "UI bersih dengan kartu aduan interaktif, peta penuh layar, dan form pelaporan multi-langkah.",
+      url: "#",
       tech: ['Next.js', 'PostgreSQL', 'Google Maps API'],
       isLive: false,
       icon: "🏙️"
     },
     {
       title: "E-Klinik (SIMRS)",
-      desc: "Hospital Management Information System.",
-      fullDesc: "Sistem Informasi Manajemen Rumah Sakit modern yang menangani alur kerja medis dari awal hingga akhir. Modul mencakup Pendaftaran, Rekam Medis Elektronik, Farmasi, dan Billing.",
-      url: "#",
-      benefits: "Digitalisasi rekam medis untuk mengurangi kesalahan administrasi dan mempercepat pelayanan pasien.",
+      img: "https://placehold.co/600x400/1e293b/6366f1?text=E-Klinik+UI",
+      summary: "Sistem Informasi Manajemen Rumah Sakit modern yang menangani alur kerja medis dari awal hingga akhir.",
+      background: "Digitalisasi rekam medis untuk mengurangi kesalahan administrasi. Dibangun dengan arsitektur MVC yang rapi menggunakan PHP Native.",
+      benefits: "Mengurangi kesalahan administrasi dan mempercepat pelayanan pasien.",
       uiux: "Layout tabular profesional, navigasi sidebar hierarkis, dan formulir input data medis yang terstruktur.",
+      url: "#",
       tech: ['PHP Native', 'MySQL', 'Bootstrap'],
       isLive: false,
       icon: "🏥"
     },
     {
       title: "SIMRT",
-      desc: "Household & Environmental Management System.",
-      fullDesc: "Sistem Informasi Manajemen Rumah Tangga untuk digitalisasi administrasi RT/RW. Fitur meliputi pencatatan kependudukan, manajemen iuran kas transparan, dan surat pengantar online.",
-      url: "#",
-      benefits: "Menghilangkan pencatatan kertas manual, mempermudah pelaporan warga, dan transparansi keuangan RT.",
+      img: "https://placehold.co/600x400/1e293b/6366f1?text=SIMRT+UI",
+      summary: "Sistem Informasi Manajemen Rumah Tangga untuk digitalisasi administrasi RT/RW.",
+      background: "Menghilangkan pencatatan kertas manual. Dibangun dengan Laravel untuk keamanan dan skalabilitas.",
+      benefits: "Mempermudah pelaporan warga dan transparansi keuangan RT.",
       uiux: "Antarmuka dashboard card metrik, data table responsif, dan alur cetak dokumen yang rapi.",
+      url: "#",
       tech: ['Laravel', 'MySQL', 'Bootstrap'],
       isLive: false,
       icon: "🏘️"
     }
   ];
 
-  // 1. TECH LOADING ANIMATION
+  // 1. LOADING SCREEN (Layar Hitam + Bintang + Teks Naik)
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center overflow-hidden">
-        {/* Grid Background Animasi */}
-        <div className="absolute inset-0 opacity-20 animate-grid-move" style={{ backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.2) 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
-        
-        {/* Garis Scan */}
-        <div className="absolute w-full h-1 bg-indigo-500/50 shadow-[0_0_15px_4px_rgba(99,102,241,0.5)] animate-scan-line"></div>
-
-        {/* Teks Logo */}
-        <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold tracking-tight text-white animate-glow-pulse">
-          Rama<span className="text-indigo-400">.IT</span>
+      <div className="fixed inset-0 z-50 stars-background flex flex-col items-center justify-center overflow-hidden">
+        <h1 className="relative z-10 text-3xl md:text-5xl font-extrabold tracking-tight text-white text-center animate-rise-up">
+          Rama IT Portfolio Loading
         </h1>
         
-        <div className="absolute bottom-8 flex flex-col items-center">
-          <div className="w-40 h-1 bg-slate-800 rounded-full overflow-hidden mb-4">
-            <div className="h-full bg-indigo-500" style={{ animation: 'loading-bar 3s ease-in-out forwards' }}></div>
-          </div>
-          <p className="text-xs text-gray-500 font-medium tracking-widest uppercase">Booting System...</p>
+        <div className="absolute bottom-10 w-64 h-1 bg-slate-800 rounded-full overflow-hidden z-10">
+          <div className="h-full bg-white" style={{ animation: 'loading-bar 3s ease-in-out forwards' }}></div>
         </div>
 
         <button 
           onClick={() => setIsLoading(false)} 
-          className="absolute bottom-8 right-8 text-xs text-gray-600 hover:text-white transition font-medium border border-slate-700 px-3 py-1.5 rounded-md"
+          className="absolute bottom-10 right-10 text-xs text-gray-600 hover:text-white transition font-medium border border-slate-700 px-3 py-1.5 rounded-md z-10"
         >
           Skip Intro <span className="ml-1">↪</span>
         </button>
@@ -176,71 +183,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT SECTION (Vertical Layout, No Cards) */}
+      {/* ABOUT SECTION */}
       <section id="about" className="py-24 px-6 border-t border-slate-200 dark:border-white/5 relative z-10">
-        <div className="max-w-4xl mx-auto space-y-12">
+        <div className="max-w-5xl mx-auto space-y-12">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center">About <span className="text-indigo-500 dark:text-indigo-400">Me</span></h2>
 
-          {/* Experience */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-500">💼</span>
-              Experience
-            </h3>
-            <div className="border-l-2 border-indigo-500/30 pl-6 ml-4 space-y-3">
-              <h4 className="font-bold text-lg text-slate-900 dark:text-white">IT Support Engineer (Internship)</h4>
-              <p className="text-sm text-indigo-500 dark:text-indigo-400 font-medium">RSUD Sultan Suriansyah • Jul 2024 - Dec 2024</p>
-              <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-2 list-disc list-inside text-justify">
-                <li><span className="font-bold text-slate-900 dark:text-white">Network Troubleshooting & Provisioning:</span> Diagnosing and resolving network connectivity issues to ensure seamless hospital operations. Configuring VLANs and router settings.</li>
-                <li><span className="font-bold text-slate-900 dark:text-white">Physical Infrastructure Management:</span> Organizing cable layouts, server racks, and hardware devices systematically. Installing and maintaining network cables (UTP/Fiber).</li>
-                <li><span className="font-bold text-slate-900 dark:text-white">End User Technical Support:</span> Providing direct assistance to medical & administrative staff for hardware and software malfunctions. Setting up workstations.</li>
-                <li><span className="font-bold text-slate-900 dark:text-white">Operational Integrity and Security:</span> Maintaining system stability and ensuring network data security protocols are strictly met according to hospital standards.</li>
-              </ul>
+          {/* Education (Sejajar) */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border-l-2 border-indigo-500/30 pl-6">
+              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">🎓</span> Education 1
+              </h3>
+              <h4 className="font-bold text-lg text-slate-900 dark:text-white">SMK Muhammadiyah 3 Banjarmasin (2022 - 2025)</h4>
+              <p className="text-sm text-indigo-500 dark:text-indigo-400 font-medium">Computer Network and Telecommunication Engineering</p>
+              <p className="text-sm text-slate-600 dark:text-gray-400 mt-2 text-justify">Fokus pada administrasi jaringan, konfigurasi Mikrotik, setup server, dan infrastruktur physical cabling. Membangun fondasi kuat dalam jaringan komputer dan telekomunikasi.</p>
+            </div>
+            <div className="border-l-2 border-indigo-500/30 pl-6">
+              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">🎓</span> Education 2
+              </h3>
+              <h4 className="font-bold text-lg text-slate-900 dark:text-white">Politeknik Negeri Banjarmasin (2022 - Present)</h4>
+              <p className="text-sm text-indigo-500 dark:text-indigo-400 font-medium">Sarjana Terapan - Sistem Informasi Kota Cerdas</p>
+              <p className="text-sm text-slate-600 dark:text-gray-400 mt-2 text-justify">Mendalami system development, software development, network infrastructure, dan security dengan fokus utama pada inovasi bidang Kota Cerdas (Smart City).</p>
             </div>
           </div>
 
-          {/* Education */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-500">🎓</span>
-              Education
+          {/* Experience (Satu Teks Utuh) */}
+          <div className="border-l-2 border-indigo-500/30 pl-6">
+            <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+              <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">💼</span> Experience
             </h3>
-            <div className="border-l-2 border-indigo-500/30 pl-6 ml-4 space-y-6">
-              <div>
-                <h4 className="font-bold text-lg text-slate-900 dark:text-white">Politeknik Negeri Banjarmasin (2023 - Present)</h4>
-                <p className="text-sm text-indigo-500 dark:text-indigo-400 font-medium">D1 Applied Smart City Information Systems</p>
-                <p className="text-sm text-slate-600 dark:text-gray-400 mt-1 text-justify">Focusing on smart city concepts, software development, and network infrastructure. Currently in the 3rd semester, actively building real-world IT projects.</p>
-              </div>
-              <div>
-                <h4 className="font-bold text-lg text-slate-900 dark:text-white">SMK Muhammadiyah 3 Banjarmasin (2020 - 2023)</h4>
-                <p className="text-sm text-indigo-500 dark:text-indigo-400 font-medium">Computer Network & Telecommunications Engineering</p>
-                <p className="text-sm text-slate-600 dark:text-gray-400 mt-1 text-justify">Vocational high school focusing on network administration, Mikrotik routing, server configuration, and physical cabling infrastructure.</p>
-              </div>
+            <h4 className="font-bold text-lg text-slate-900 dark:text-white">IT Support Engineer (Internship)</h4>
+            <p className="text-sm text-indigo-500 dark:text-indigo-400 font-medium mb-2">RSUD Sultan Suriansyah • 2024</p>
+            <p className="text-sm text-slate-600 dark:text-gray-400 text-justify">Bertanggung jawab atas network troubleshooting and provisioning, physical infrastructure management, end user technical support, dan operational integrity and security.</p>
+          </div>
+
+          {/* Profile Summary & Resume (Sejajar) */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border-l-2 border-indigo-500/30 pl-6">
+              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">👤</span> Profile Summary
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-gray-400 text-justify">I am a dedicated Web Developer and Network Engineer. My passion lies in building robust web applications while ensuring the underlying IT infrastructure is secure, scalable, and efficiently managed. With a strong background in both software engineering and hardware infrastructure, I bridge the gap between digital application logic and physical network reality.</p>
             </div>
-          </div>
-
-          {/* Profile Summary */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-500">👤</span>
-              Profile Summary
-            </h3>
-            <p className="text-sm text-slate-600 dark:text-gray-400 text-justify leading-relaxed pl-4">
-              I am a dedicated Web Developer and Network Engineer. My passion lies in building robust web applications while ensuring the underlying IT infrastructure is secure, scalable, and efficiently managed. With a strong background in both software engineering and hardware infrastructure, I bridge the gap between digital application logic and physical network reality.
-            </p>
-          </div>
-
-          {/* Resume CV */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-500">📄</span>
-              Resume / CV
-            </h3>
-            <div className="pl-4">
-              <p className="text-sm text-slate-600 dark:text-gray-400 text-justify leading-relaxed mb-4">
-                Need a detailed copy of my professional background, technical skills, and project portfolios? Download my comprehensive PDF resume here.
-              </p>
-              <a href="/cv-fathur.pdf" download className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition w-full sm:w-auto inline-flex items-center justify-center gap-2">
+            <div className="border-l-2 border-indigo-500/30 pl-6 flex flex-col">
+              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">📄</span> Resume / CV
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-gray-400 text-justify mb-4">Need a detailed copy of my professional background, technical skills, and project portfolios? Download my comprehensive PDF resume here.</p>
+              <a href="/cv-fathur.pdf" download className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition w-full sm:w-auto inline-flex items-center justify-center gap-2 self-start">
                 Download CV <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
               </a>
             </div>
@@ -250,105 +241,92 @@ export default function Home() {
 
       {/* SKILLS SECTION */}
       <section id="skills" className="py-24 px-6 border-t border-slate-200 dark:border-white/5 relative z-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">My <span className="text-indigo-500 dark:text-indigo-400">Skills</span></h2>
-            <p className="text-slate-500 dark:text-gray-500">Expertise in Software Development & IT Infrastructure.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-slate-50 dark:bg-white/5 p-8 rounded-2xl border border-slate-200 dark:border-white/10 hover:border-indigo-500/50 transition-all duration-300">
+            
+            {/* Tech Stack */}
+            <div className="bg-slate-50 dark:bg-white/5 p-8 rounded-2xl border border-slate-200 dark:border-white/10">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">💻</span>
-                Web & Software Development
+                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">💻</span> TECH STACK
               </h3>
-              <div className="flex flex-wrap gap-3">
-                {webSkills.map((skill, i) => (
-                  <span key={i} className="px-4 py-2 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-white/5 hover:bg-indigo-600 hover:text-white hover:scale-105 transition-all duration-300 cursor-default shadow-sm">{skill}</span>
+              <div className="space-y-4">
+                {Object.entries(techStack).map(([category, skills]) => (
+                  <div key={category}>
+                    <h4 className="text-xs font-bold text-slate-500 dark:text-gray-500 uppercase tracking-wider mb-2">{category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map(skill => (
+                        <span key={skill} className="px-3 py-1.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 text-xs font-medium rounded-lg border border-slate-200 dark:border-white/5 hover:bg-indigo-600 hover:text-white hover:scale-105 transition-all duration-300">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
-            <div className="bg-slate-50 dark:bg-white/5 p-8 rounded-2xl border border-slate-200 dark:border-white/10 hover:border-indigo-500/50 transition-all duration-300">
+
+            {/* Network & IT Infrastructure */}
+            <div className="bg-slate-50 dark:bg-white/5 p-8 rounded-2xl border border-slate-200 dark:border-white/10">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">🌐</span>
-                Network & IT Infrastructure
+                <span className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">🌐</span> Network & IT Infrastructure
               </h3>
-              <div className="flex flex-wrap gap-3">
-                {networkSkills.map((skill, i) => (
-                  <span key={i} className="px-4 py-2 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-white/5 hover:bg-indigo-600 hover:text-white hover:scale-105 transition-all duration-300 cursor-default shadow-sm">{skill}</span>
+              <div className="space-y-4">
+                {Object.entries(networkSkills).map(([category, skills]) => (
+                  <div key={category}>
+                    <h4 className="text-xs font-bold text-slate-500 dark:text-gray-500 uppercase tracking-wider mb-2">{category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map(skill => (
+                        <span key={skill} className="px-3 py-1.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 text-xs font-medium rounded-lg border border-slate-200 dark:border-white/5 hover:bg-indigo-600 hover:text-white hover:scale-105 transition-all duration-300">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* PROJECTS SECTION (Stats + Detail Layout) */}
+      {/* PROJECTS SECTION */}
       <section id="projects" className="py-24 px-6 border-t border-slate-200 dark:border-white/5 relative z-10">
         <div className="max-w-6xl mx-auto">
-          
-          {/* Top Part: Stats & ID Card */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="md:col-span-2 flex flex-col justify-center">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-4">My <span className="text-indigo-500 dark:text-indigo-400">Projects</span></h2>
-              <p className="text-slate-600 dark:text-gray-500 text-justify mb-8">
-                I have spent the last few years building digital solutions ranging from web applications to IT infrastructure innovations. My focus is on creating systems that are not only functional but also scalable, secure, and user-friendly. Here are some statistics of my journey.
-              </p>
-              
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/10 text-center">
-                  <h3 className="text-2xl font-extrabold text-indigo-500">1+</h3>
-                  <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider mt-1">Years Exp</p>
-                </div>
-                <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/10 text-center">
-                  <h3 className="text-2xl font-extrabold text-indigo-500">4+</h3>
-                  <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider mt-1">Projects Built</p>
-                </div>
-                <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/10 text-center">
-                  <h3 className="text-2xl font-extrabold text-indigo-500">3+</h3>
-                  <p className="text-[10px] text-slate-500 dark:text-gray-500 uppercase tracking-wider mt-1">Innovations</p>
-                </div>
-              </div>
-            </div>
-
-            {/* ID Card Mini (Project Section) */}
-            <div className="hidden md:flex justify-center items-center">
-              <div className="animate-float relative w-48 h-64 perspective-1000">
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-24 h-12 border-2 border-purple-500/30 rounded-b-[24px] border-t-0"></div>
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full z-10"></div>
-                <div className="absolute inset-0 rounded-xl shadow-2xl border border-slate-200 dark:border-white/10 overflow-hidden group">
-                  <img src="/id-card-photo.jpg" alt="Foto Fathur" className="w-full h-full object-cover bg-slate-200" onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/192x256/1e293b/6366f1?text=Fathur"; }} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
-                    <h3 className="font-extrabold text-sm text-white tracking-tight">Fathur Ramadhan</h3>
-                    <p className="text-purple-400 text-[10px] font-bold uppercase tracking-wider mt-1">System Engineer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">My <span className="text-indigo-500 dark:text-indigo-400">Projects</span></h2>
           </div>
-
-          {/* Bottom Part: Project List (Click to open Detail) */}
-          <div className="grid md:grid-cols-2 gap-6">
+          
+          <div className="grid md:grid-cols-2 gap-8">
             {projects.map((p, i) => (
-              <div key={i} onClick={() => setActiveProject(p)} className="group bg-slate-50 dark:bg-gradient-to-br dark:from-slate-800/50 dark:to-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-white/10 hover:border-indigo-500/50 transition-all duration-300 cursor-pointer relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full -mr-8 -mt-8 group-hover:bg-indigo-500/10 transition-colors"></div>
-                <div className="flex justify-between items-start mb-4 relative">
-                  <div className="w-12 h-12 bg-white dark:bg-white/5 rounded-xl flex items-center justify-center text-2xl shadow-sm">{p.icon}</div>
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${p.isLive ? 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400' : 'bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-400'}`}>
+              <div key={i} className="group bg-slate-50 dark:bg-gradient-to-br dark:from-slate-800/50 dark:to-slate-900/50 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden hover:border-indigo-500/50 transition-all duration-300">
+                
+                {/* Gambar/Preview Sistem */}
+                <div className="relative h-48 bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                  <img src={p.img} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <span className={`absolute top-4 right-4 text-[10px] font-bold px-2 py-1 rounded-full ${p.isLive ? 'bg-green-500/90 text-white' : 'bg-orange-500/90 text-white'}`}>
                     {p.isLive ? 'Live Deploy' : 'XAMPP'}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{p.title}</h3>
-                <p className="text-slate-600 dark:text-gray-400 mb-6 text-sm leading-relaxed">{p.desc}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {p.tech.map(t => (
-                    <span key={t} className="text-xs bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 px-2 py-1 rounded-md font-medium">{t}</span>
-                  ))}
-                </div>
 
-                <div className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-sm group-hover:gap-3 transition-all">
-                  View Details <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <div className="p-6">
+                  {/* Judul Kiri */}
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                    <span>{p.icon}</span> {p.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-gray-400 mb-4 text-sm text-justify">{p.summary}</p>
+
+                  {/* Tombol Aksi */}
+                  <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                    <button onClick={() => setActiveProject(p)} className="flex-1 bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-indigo-700 transition flex items-center justify-center gap-1">
+                      View Details <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                    <a href={p.url} target="_blank" rel="noopener noreferrer" className={`flex-1 ${p.isLive ? 'bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-gray-600 cursor-not-allowed'} px-4 py-2 rounded-lg font-bold text-sm transition flex items-center justify-center gap-1`} onClick={(e) => !p.isLive && e.preventDefault()}>
+                      Demo {p.isLive ? '🌐' : '🔒'}
+                    </a>
+                    <a href="https://github.com/fathurramadhan410-glitch" target="_blank" rel="noopener noreferrer" className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 dark:hover:bg-slate-100 transition flex items-center justify-center">
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -400,62 +378,52 @@ export default function Home() {
         <p className="text-center text-sm text-slate-500 dark:text-gray-500">&copy; {new Date().getFullYear()} Fathur Ramadhan (Rama-IT). All Rights Reserved.</p>
       </footer>
 
-      {/* MODAL DETAIL PROYEK (FIXED BLUR ISSUE) */}
+      {/* MODAL DETAIL PROYEK (FIXED) */}
       {activeProject && (
-        <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md p-4 flex items-center justify-center overflow-y-auto" onClick={() => setActiveProject(null)}>
-          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-2xl p-8 md:p-10 relative my-8" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-indigo-500/10 rounded-xl flex items-center justify-center text-4xl">{activeProject.icon}</div>
-              <div>
-                <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">{activeProject.title}</h3>
-                <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${activeProject.isLive ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>{activeProject.isLive ? 'Live Deploy' : 'XAMPP'}</span>
-              </div>
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 p-4 overflow-y-auto" onClick={() => setActiveProject(null)}>
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-2xl my-8 relative animate-fade-in-up" onClick={e => e.stopPropagation()}>
+            
+            <div className="relative h-64 bg-slate-200 dark:bg-slate-800 rounded-t-2xl overflow-hidden">
+              <img src={activeProject.img} alt={activeProject.title} className="w-full h-full object-cover" />
+              <button onClick={() => setActiveProject(null)} className="absolute top-4 right-4 text-white hover:text-slate-300 transition bg-black/50 rounded-full p-2 backdrop-blur-sm">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
             </div>
 
-            <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-bold text-slate-900 dark:text-white mb-1">Description</h4>
-                <p className="text-slate-600 dark:text-gray-400 text-justify leading-relaxed">{activeProject.fullDesc}</p>
+            <div className="p-8 max-h-[60vh] overflow-y-auto">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-indigo-500/10 rounded-xl flex items-center justify-center text-3xl">{activeProject.icon}</div>
+                <div>
+                  <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">{activeProject.title}</h3>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${activeProject.isLive ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>{activeProject.isLive ? 'Live Deploy' : 'XAMPP'}</span>
+                </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-4 text-sm">
                 <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Benefits (Manfaat)</h4>
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Ringkasan Sistem</h4>
+                  <p className="text-slate-600 dark:text-gray-400 text-justify leading-relaxed">{activeProject.summary}</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Latar Belakang Sistem</h4>
+                  <p className="text-slate-600 dark:text-gray-400 text-justify leading-relaxed">{activeProject.background}</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Manfaat</h4>
                   <p className="text-slate-600 dark:text-gray-400 text-justify leading-relaxed">{activeProject.benefits}</p>
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">UI/UX Experience</h4>
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Antarmuka Pengguna (UI/UX)</h4>
                   <p className="text-slate-600 dark:text-gray-400 text-justify leading-relaxed">{activeProject.uiux}</p>
                 </div>
-              </div>
 
-              <div className="flex flex-wrap gap-2 py-2">
-                {activeProject.tech.map((t: string) => (
-                  <span key={t} className="text-xs bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-md font-medium">{t}</span>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
-                {activeProject.isLive ? (
-                  <a href={activeProject.url} target="_blank" rel="noopener noreferrer" className="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold text-center hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-                    Kunjungi Website <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                  </a>
-                ) : (
-                  <div className="flex-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-gray-400 px-6 py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-                    Run via XAMPP (Local)
-                  </div>
-                )}
-                <a href="https://github.com/fathurramadhan410-glitch" target="_blank" rel="noopener noreferrer" className="flex-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-bold text-center hover:bg-slate-700 dark:hover:bg-slate-100 transition flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                  View Code
-                </a>
+                <div className="flex flex-wrap gap-2 py-2">
+                  {activeProject.tech.map((t: string) => (
+                    <span key={t} className="text-xs bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-md font-medium">{t}</span>
+                  ))}
+                </div>
               </div>
             </div>
-
-            <button onClick={() => setActiveProject(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 dark:hover:text-white transition bg-slate-100 dark:bg-slate-800 rounded-full p-2">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
           </div>
         </div>
       )}
